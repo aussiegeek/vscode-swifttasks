@@ -1,0 +1,6 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+test-user-data-dir/
+test-extensions-dir/

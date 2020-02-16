@@ -1,0 +1,17 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "search.exclude": {
+    "out": true // set this to false to include "out" folder in search results
+  },
+  // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+  "typescript.tsc.autoDetect": "off",
+  "editor.formatOnSave": true,
+  // Typescript, stop compiled .js and .map files showing in explorer
+  "files.exclude": {
+    "out": true,
+    "**/*.js": { "when": "$(basename).ts" },
+    "**/*.js.map": true
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.lintTask.options": "src --ext ts"
+}
