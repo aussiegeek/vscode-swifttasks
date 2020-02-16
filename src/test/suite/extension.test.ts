@@ -13,7 +13,9 @@ suite("Extension Test Suite", () => {
     });
   });
 
-  test("tasks in source package are configured", async () => {
+  // eslint-disable-next-line func-names
+  test("tasks in source package are configured", async function() {
+    this.timeout(5000);
     const tasks = await vscode.tasks.fetchTasks();
     expect(tasks).to.have.lengthOf(1);
     assertUnwrap(tasks[0], task => {
