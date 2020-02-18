@@ -13,5 +13,6 @@
     "**/*.js.map": true
   },
   "eslint.packageManager": "yarn",
-  "eslint.lintTask.options": "src --ext ts"
+  "eslint.lintTask.options": "src --ext ts",
+  "debug.openDebug": "neverOpen"
 }
