@@ -17,7 +17,54 @@
   "contributes": {
     "taskDefinitions": [
       {
-        "type": "swift"
+        "type": "swift",
+        "properties": {
+          "selector": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "package"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "description": "Use the package selector to target the whole Swift package"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "const": "target"
+                  }
+                },
+                "description": "Use the target selector to target one target only"
+              }
+            ]
+          },
+          "directory": {
+            "type": "string",
+            "description": "The directory the swift task will run in"
+          },
+          "taskType": {
+            "type": "string",
+            "enum": [
+              "test",
+              "build"
+            ],
+            "description": "The type of the task to run"
+          }
+        },
+        "required": [
+          "directory",
+          "taskType",
+          "selector"
+        ]
       }
     ]
   },

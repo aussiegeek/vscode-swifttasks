@@ -27,7 +27,9 @@
       {
         "case": "camelCase"
       }
-    ]
+    ],
+    "default-case": "off",
+    "consistent-return": "off"
   },
   "settings": {
     "import/core-modules": ["vscode"]

@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ProviderResult } from "vscode";
 import { TaskType } from "./tasksForPackage";
 import tasksForUri from "./tasksForUri";
+import executionForTaskDefinition from "./executionForTaskDefinition";
 
 export { TaskType };
 
@@ -26,7 +27,7 @@ export default class SwiftTaskProvider implements vscode.TaskProvider {
 
   async fetchAllTasks(): Promise<vscode.Task[]> {
     const uris = await vscode.workspace.findFiles(this.packageFileGlob);
-    return uris.reduce<Promise<vscode.Task[]>>(
+    const tasks = await uris.reduce<Promise<vscode.Task[]>>(
       async (accumulatorPromise, uri: vscode.Uri) => {
         const accumulator = await accumulatorPromise;
 
@@ -36,6 +37,11 @@ export default class SwiftTaskProvider implements vscode.TaskProvider {
       },
       Promise.resolve([])
     );
+    return tasks.map(originalTask => {
+      const task = originalTask;
+      task.execution = executionForTaskDefinition(originalTask.definition);
+      return task;
+    });
   }
 
   provideTasks(): vscode.ProviderResult<vscode.Task[]> {
@@ -43,7 +49,12 @@ export default class SwiftTaskProvider implements vscode.TaskProvider {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  resolveTask(task: vscode.Task): ProviderResult<vscode.Task> {
-    return task;
+  resolveTask(originalTask: vscode.Task): ProviderResult<vscode.Task> {
+    const task = originalTask;
+    task.execution = executionForTaskDefinition(task.definition);
+    if (task.execution) {
+      return task;
+    }
+    return undefined;
   }
 }
