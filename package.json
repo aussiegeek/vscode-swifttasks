@@ -3,7 +3,8 @@
   "publisher": "aussiegeek",
   "displayName": "swifttasks",
   "description": "Provide common tasks for swift packages",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "repository": "aussiegeek/vscode-swifttasks",
   "engines": {
     "vscode": "^1.39.0"
   },
