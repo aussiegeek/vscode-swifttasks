@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { ProviderResult } from "vscode";
+import { ProviderResult, window } from "vscode";
 import { TaskType } from "./tasksForPackage";
 import tasksForUri from "./tasksForUri";
 import executionForTaskDefinition from "./executionForTaskDefinition";
@@ -14,7 +14,12 @@ export default class SwiftTaskProvider implements vscode.TaskProvider {
   static TaskType = TaskType;
 
   async fetchAndSetTasks(): Promise<vscode.Task[]> {
-    this.filesystemTaskCache = await this.fetchAllTasks();
+    try {
+      this.filesystemTaskCache = await this.fetchAllTasks();
+    } catch (error) {
+      window.showErrorMessage(error.message);
+      return [];
+    }
     return this.filesystemTaskCache;
   }
 
