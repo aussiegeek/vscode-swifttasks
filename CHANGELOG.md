@@ -1,5 +1,11 @@
 # vscode-swifttasks
 
+## Unreleased
+
+###
+
+- Basic README documentation
+
 ## 0.0.2
 
 ### Patch Changes

@@ -4,7 +4,10 @@
   "displayName": "swifttasks",
   "description": "Provide common tasks for swift packages",
   "version": "0.0.2",
-  "repository": "aussiegeek/vscode-swifttasks",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aussiegeek/vscode-swifttasks"
+  },
   "engines": {
     "vscode": "^1.39.0"
   },
